@@ -12,7 +12,7 @@ int main(){
     s_time1 = time (NULL); //Считываем текущее системное время
     s_time2 = time (NULL);
 
-    printf("SET TIME IS: ");// timer - это внешние данные
+    printf("\nSET TIME IS: ");// timer - это внешние данные
     scanf("%d", &timer);
 
     vvod = getc(stdin);
@@ -40,9 +40,9 @@ int main(){
     printf("Correct: %d\n", correct);
     printf("Accuracy: %.2f%%\n", accuracy*100); // Точность
     printf("\nPress enter to continue...\n");
-
+go:
     getchar();
-    printf("Do you want to go to the menu or go again?\n");
+    printf("\nDo you want to go to the menu or go again?\n");
     printf("Press # if you want to go to the menu or ! to go through again: \n");
 
     char a;
@@ -50,14 +50,15 @@ int main(){
 
     switch(a) {
         case '#':
-            // Выход в меню
+            return 0;
             break;
         case '!':
-            // Прохождение заново
+            main();
             break;
         default:
-            printf("Try it again\n");
-            return a;
+            printf("\nTry it again\n");
+            goto go;
+            break;
     }
 }
 
