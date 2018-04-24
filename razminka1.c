@@ -14,7 +14,6 @@ int main(){
 
     printf("SET TIME IS: ");// timer - это внешние данные
     scanf("%d", &timer);
-    /*  while(vvod != '#')  выход в меню return 0;*/
 
     vvod = getc(stdin);
 
