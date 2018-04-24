@@ -19,7 +19,7 @@ int main(){
 
     while (total < timer){
         s_time1 = time (NULL);
-        ch = ('a' + rand()%('z'-'a'));
+        ch = ('A' + rand()%('z'-'A'));
         printf("%c --> ", ch);
 
             while((vvod = getc(stdin)) != '\n') {
