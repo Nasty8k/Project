@@ -9,7 +9,7 @@ struct SET {
         int strings;
 };
 
-int settings_inital(FILE * Fset, struct SET * Pset);
-int settings_user(FILE * Fset, struct SET * Pset);
+int settings_inital(struct SET * Pset);
+int settings_user(struct SET * Pset);
 
 #endif

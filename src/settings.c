@@ -1,12 +1,10 @@
 #include "settings.h"
 
 
-int settings_inital(FILE * Fset, struct SET * Pset)
+int settings_inital(struct SET * Pset)
 {
-
     int tmp = 0;
-    
-    Fset = fopen("data/Game/SET.txt", "r");
+    FILE * Fset = fopen("data/Game/SET.txt", "r");
     if (Fset == NULL) {
         printf("not filr\n");
         Fset = freopen("data/Game/SET.txt", "a", Fset);
@@ -29,13 +27,13 @@ int settings_inital(FILE * Fset, struct SET * Pset)
     return 1;
 }
 
-int settings_user(FILE * Fset, struct SET * Pset)
+int settings_user(struct SET * Pset)
 {
     int vvod = 0;
     int tmp = 0;
 
     /* Если файла не существует, то создается + проверка на корректность данных */
-    Fset = fopen("data/Game/SET.txt", "r");
+    FILE * Fset =  fopen("data/Game/SET.txt", "r");
     if (Fset == NULL) { 
         Fset = freopen("data/Game/SET.txt", "a", Fset);
         fprintf(Fset, "%s%d%c", "timer ", 5, '\n');

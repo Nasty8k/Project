@@ -1,4 +1,5 @@
 #include "game_opening.h"
+#include "settings.h"
 
 char * settime(struct tm *u)
 {
@@ -15,7 +16,10 @@ void opening(void)
 {
     const time_t timer = time(NULL);
     char *day = settime(localtime(&timer));
-    int Stime = 5, Sstr = 5;
+    struct SET set; 
+    struct SET * Pset = &set;  
+
+    settings_inital(Pset); 
     system("clear");
     printf("\n");
     printf("%s ██╗  ██╗███████╗██╗   ██╗  ██████╗  ██████╗  █████╗ ██████╗ ██████╗  \n", RED); 
@@ -28,8 +32,8 @@ void opening(void)
     printf("\t\t\t\t  ____  ____  ____  ____  ____  ____ \n");
     printf(" %s\t %s||n |||%s|i ||%s||n ||%s||j |||%s|a ||||%s¤ ||\n", day, RED, CYAN, GREEN, YELOW, WHITE, RESET);
     printf("\t\t\t\t ||__||||__||||__||||__||||__||||__||\n"
-                " %s: %s %2d %s %2d\t |/__\\||/__\\||/__\\||/__\\||/__\\||/__\\|\n",  "SET", "time", Stime, "|strings", Sstr);
-    printf("===========================\n%s 1.PLAY\n%s 2.QUICK GAME\n%s 3.SETTINGS\n%s 4.TABLE\n%s 5.INFO%s\n===========================\n", RED, CYAN, GREEN, YELOW, WHITE, RESET);
+                " %s: %s %2d %s %2d\t |/__\\||/__\\||/__\\||/__\\||/__\\||/__\\|\n",  "SET", "time", set.timer, "|strings", set.strings);
+    printf("===========================\n%s 1.PLAY\n%s 2.QUICK GAME\n%s 3.SETTINGS\n%s 4.TABLE\n%s 5.INFO\t\tEXIT #%s\n===========================\n", RED, CYAN, GREEN, YELOW, WHITE, RESET);
                                                                           
      
 }
