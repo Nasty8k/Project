@@ -7,26 +7,41 @@
 void own_statistics(FILE *name)
 {
      char  string[20][40];
-     
+     char c;
      printf("YOUR STATISTICS\n");
      
-     //while(fscanf(name,"%s",string)  != EOF){
-     for ( int i = 0; i < 20; i++){
-         fscanf(name,"%s",string[i]);
-         if (strlen(string[i]) > 21)
-             fprintf(stdout,"%s\n",string[i]);
+    for ( int i = 0; i < 20; i++){
+        fscanf(name,"%s",string[i]); 
+        if ((c = fgetc(name)) != EOF){
+        fprintf(stdout,"%s\n",string[i]);
+        }
     }
+    
+   
 }
 
 void general_statistics()
 {
 
-     char string1[15];
-     char string2[15];
+    FILE *listf;
+    //FILE *name;
+    char c;
+    printf("GENERAL STATISTICS\n");
+    
      
-     while(fscanf(name, %s,string1)  != EOF){
-         fscanf(name,%s, string1);
-         if (string1 != EOF){
-                 string2 = string1;
-         }
+    listf = fopen("ListPlayers.txt", "r");
+    int i = 0;
+    while ((c = fgetc(listf)) != EOF){
+        if (c == '\n')
+            i ++;
+    }
+    fprintf(stdout,"%d\n",i);
+   /* char list[i][18];
+    for (int j = 0; j <i; j++){
+        fscanf(listf,"%s",list[j]);
+        fprintf(stdout,"%s\n",list[j]);
+    /}*/
+
+    fclose(listf);
+  //  return v;
 }
