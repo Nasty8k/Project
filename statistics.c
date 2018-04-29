@@ -50,7 +50,7 @@ void general_statistics()
     
     char *list_pointer;
     int i = 0;
-    char list_string[] = {"test.txt"};
+    char list_string[] = {"ListPlayers.txt"};
     list_pointer = &list_string;
     i = counter(list_pointer);
     
@@ -59,25 +59,28 @@ void general_statistics()
     char players[i][16];
     int num;
 
+
     for ( int j = 0; j < i; j++){
         fscanf(listf,"%d%c%s",&num,&c,list[j]); 
         strcpy(players[j],list[j]);
     }
     
-    
+    //добавление  к имени игрока ".txt"
     for ( int j = 0; j < i; j++){
        scopy(list[j]);
     }
     
-    for(int g = 0; g < i; g ++){
+    for(int g = 0; g < i; g ++){// открытие файла типа NAME.txt
         char *name_pointer;
-        name_pointer = &list[g];
-        namef = fopen(name_pointer,"r");
+        name_pointer = &list[g]; 
+        namef = fopen(name_pointer,"r"); 
         char name[counter(name_pointer)][32];
+        
         fprintf(stdout,"%s|",players[g]);
+        
         for( int p =0; p <= counter(name_pointer); p++){
             fscanf(namef,"%s",name[p]);
-            if (p == (counter(name_pointer)) - 1)
+            if (p == (counter(name_pointer)) - 1) //Вывод последней строки на экран
             fprintf(stdout,"%s\n",name[p]);
         }
         
