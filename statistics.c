@@ -29,19 +29,26 @@ void general_statistics()
     printf("GENERAL STATISTICS\n");
     
      
-    listf = fopen("ListPlayers.txt", "r");
+    listf = fopen("test.txt", "r");
     int i = 0;
     while ((c = fgetc(listf)) != EOF){
         if (c == '\n')
             i ++;
     }
     fprintf(stdout,"%d\n",i);
-   /* char list[i][18];
-    for (int j = 0; j <i; j++){
-        fscanf(listf,"%s",list[j]);
+    fclose(listf);
+    
+    listf = fopen("test.txt", "r");
+    char list[i][18];
+    int num;
+
+    for ( int j = 0; j < i; j++){
+        fscanf(listf,"%d%c%s",&num,&c,list[j]); 
+        if ((c = fgetc(listf)) != EOF){
         fprintf(stdout,"%s\n",list[j]);
-    /}*/
+        }
+    }
+    
 
     fclose(listf);
-  //  return v;
 }
