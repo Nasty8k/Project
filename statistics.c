@@ -1,21 +1,24 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "statistics.h"
 
 
 void own_statistics(FILE *name)
 {
-     char string[50];
+     char  string[20][40];
      
      printf("YOUR STATISTICS\n");
      
-     while(fscanf(name,"%s",string)  != '\n'){
-         fscanf(name,"%s",string);
-         printf("%s\n", string);
+     //while(fscanf(name,"%s",string)  != EOF){
+     for ( int i = 0; i < 20; i++){
+         fscanf(name,"%s",string[i]);
+         if (strlen(string[i]) > 21)
+             fprintf(stdout,"%s\n",string[i]);
     }
 }
 
-/*void general_statistics()
+void general_statistics()
 {
 
      char string1[15];
@@ -26,4 +29,4 @@ void own_statistics(FILE *name)
          if (string1 != EOF){
                  string2 = string1;
          }
-}*/
+}
