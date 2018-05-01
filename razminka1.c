@@ -2,20 +2,15 @@
 #include <stdlib.h>
 #include <time.h>
 
-int main(){
+int razminka(int timer){
 
-    int mist = 0, correct = 0, timer;
+    int mist = 0, correct = 0;
     char vvod, ch;
-    float accuracy;
+    float accuracy; // Точность
     long int s_time1, s_time2, total = 0.0; //s_time2 - переменная для сохранения конца интервала
 
     s_time1 = time (NULL); //Считываем текущее системное время
     s_time2 = time (NULL);
-
-    printf("\nSET TIME IS: ");// timer - это внешние данные
-    scanf("%d", &timer);
-
-    vvod = getc(stdin);
 
     while (total < timer){
         s_time1 = time (NULL);
@@ -33,12 +28,12 @@ int main(){
     }
 
     float zn; // Знаменатель
-    zn = mist+correct;
+    zn = mist + correct;
     accuracy = (correct/zn);
 
     printf("Mistakes: %d\n", mist); 
     printf("Correct: %d\n", correct);
-    printf("Accuracy: %.2f%%\n", accuracy*100); // Точность
+    printf("Accuracy: %.2f%%\n", accuracy*100);
     printf("\nPress enter to continue...\n");
 go:
     getchar();
