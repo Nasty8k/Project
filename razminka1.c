@@ -4,7 +4,7 @@
 
 int main(){
 
-    int mist, correct, oshib = 0, timer;
+    int mist, correct = 0, timer;
     char vvod, ch;
     float accuracy;
     long int s_time1, s_time2, total = 0.0; //s_time2 - переменная для сохранения конца интервала
