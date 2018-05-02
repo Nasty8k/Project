@@ -2,12 +2,12 @@
 #define _TRAIN_
 
 #include <stdlib.h>
+#include <stdio.h>
 #include <string.h>
-
+#define MAX 100
 struct progress{
 	int wrong_s;
 	int right_s;
-	float accur;
 	int points;
 };
 
