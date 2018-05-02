@@ -2,12 +2,28 @@
 #include "training.h"
 
 int check;
-int compare_string(char *string, struct progress *prog){
+void compare_string(char *s1,char *s2, struct progress *prog){
+	
+
+	
+	for (int len = 0; len < (strlen(s1)); len++){
+		if (s1[len] == s2[len]){
+			if(s1[len] != ' '){
+		        prog->points = prog-> points +1;
+		        prog-> right_s = prog-> right_s +1;
+		    }
+		}else prog-> wrong_s = prog-> wrong_s +1;
+	}
+	
+	fprintf(stdout,"%d\t%d\t%d\n",prog-> points, prog-> right_s, prog-> wrong_s );
+	
+	
+	
+}	
+int write_string(char *string, struct progress *prog){
 	
 	char s2[69];
 	check = 0;
-	int len;
-	len = strlen(string);
 	fprintf(stdout, "%s\n", string);
 	
 	printf("Начинайте ввод\n");
@@ -21,7 +37,7 @@ int compare_string(char *string, struct progress *prog){
 	}while(s2[i-1] != '\n');
 	s2[i-1] = '\0';
 
-    
+    compare_string(string,s2, prog);
   //  fprintf(stdout, "%s\n", string);
     
     
@@ -36,7 +52,12 @@ int training(int n_string, struct User *player)
 	FILE *file;
 	char string1[n_string][69], s[69];
 	struct progress prog;
+	prog.wrong_s = -1;
+	prog.right_s= 0;
+	prog.accur = 0;
+	prog.points = 0;
 	struct progress *p_prog;
+	p_prog =&prog;
 	
 	file = fopen("test.txt", "r");
 	level = (player -> level)-1;
@@ -46,12 +67,11 @@ int training(int n_string, struct User *player)
 		if (i == level)
 		   for (int g = 0; g < n_string; g ++){
 			   fgets(string1[g], 69, file);
-			   //fprintf(stdout, "%s\n", string1[g]);
 		   }
 		}
 	
 	for (int i = 0; i < n_string; i++){
-		    check = compare_string(string1[i], p_prog);
+		    check = write_string(string1[i], p_prog);
 		    if (check == -1)
 		    	return -1;
     }
