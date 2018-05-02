@@ -4,6 +4,13 @@
 #include <stdlib.h>
 #include <string.h>
 
+struct progress{
+	int wrong_s;
+	int right_s;
+	float accur;
+	int points;
+};
+
 struct User{
 
     int number;    
