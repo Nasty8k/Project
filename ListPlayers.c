@@ -1,31 +1,44 @@
-#include <stdio.h>
-#include <string.h>
+/*
+ Нужна проверка и дороботка.
+ 1) Существует ли имя в списке
+ 2) Создание файла <NAME>.txt игрока в data/Users
+ 3) Варианты выхода с успехом (1) или ошибкой (-1) 
+*/
+#include "ListPlayers.h"
+int main() {
+    
+    struct User * player = &PLAYER;
+    choice_name(player);
+    return 0;
+}
 
-int main()
+int choice_name(struct User * player)
 {
-    char Player[15];
-    int i, j, n = 1;
-    FILE *file = fopen("ListPlayers.txt", "a+"); //
-
-    if (file!=NULL)
-        printf("Successfully it was possible to open a file for reading and additions\n");
-    else printf("Couldn't open file");
-
-    printf("Please, enter a name: \n");
-    scanf("%s", Player);
-
-    do {
-        j = fgetc(file);
-        if (j == '\n')
-            n++;}
-         while (j != EOF);
-
-    for(i=0; i<15; i++) {
-        if ((Player[i]=='#') || (Player[i]=='/'))
-        printf ("The name can`t contain # and /!\n");
+    FILE *origin = fopen("data/Game/ListPlayers.txt", "r");
+   
+    char *t, tmp_file[20] = {0}, gamers[10][15] = {0};
+    int input, i = 1, number = 0;
+    t = malloc(15 * sizeof(char));
+    while (fscanf(origin, "%d. %s\n", &number, gamers[i++]) != EOF) {
+        fprintf(stdout,"%d. %s\n", number, gamers[number]); 
     }
-
-    fprintf(file, "%d. %s\n", n, Player);
-    fclose(file);
+    fprintf(stdout,"%d. SET NEW\n", ++number); 
+    printf("Enter your number:  ");
+    scanf("%d", &input);
+    if (input == number) {
+        printf("Pease, input your name (len < 14; without # and / )\n");
+        scanf("%15s", t);
+        if(strlen(t) == 0) printf("ERRRO\n");
+        printf(" tmp strlen %ld -%s-\n", strlen(t), t);
+        
+        printf("In new gamers -%s-\n", gamers[number]);
+    } else {
+        strcpy(tmp_file, gamers[input]);
+        printf("In tmp -%s-\n", tmp_file);
+    }
+        
+    fclose(origin);
+    
+    return 0;
 }
 
