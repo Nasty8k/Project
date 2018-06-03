@@ -3,13 +3,9 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
-struct SET {
-        int timer;
-        int strings;
-};
-
-int settings_inital(struct SET * Pset);
-int settings_user(struct SET * Pset);
-
+void settings_inital(void);
+int settings_user(void);
+int correct_set(int set_t, int set_s);
 #endif
