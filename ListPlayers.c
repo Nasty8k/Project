@@ -1,16 +1,22 @@
 /*
  Нужна проверка и дороботка.
- 1) Существует ли имя в списке
- 2) Создание файла <NAME>.txt игрока в data/Users
- 3) Варианты выхода с успехом (1) или ошибкой (-1)
 
-   проверку списка
-   построение выбора меню
+ Создание файла <NAME>.txt игрока в data/Users
+ Построение выбора меню
+ 
 */
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #define RUS "#\\ АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдеёжзийклмнопрстуфхцчшщъыьэюя"
+
+struct User{
+    int number;    
+    char name[15];
+    int points;
+    int level;
+    float accur;
+} player;
 
 int schr(const char * str, const char ch)
 {
@@ -18,6 +24,30 @@ int schr(const char * str, const char ch)
     for(i = 0; (str[i] != '\0') && (str[i] != ch); i++);
     if (str[i] == ch) idx = i;
     return idx;
+}
+
+int check_individual(char new_name[]) /* ok ? new_num : 0;*/
+{
+    char str[16];
+    int n = -1;
+    FILE *l = fopen("List.txt", "r");
+    if (l != NULL) {
+        while (!feof(l)) {
+            fscanf(l, "%d.%s\n", &n, str);
+            if (strcmp(new_name, str) == 0) {
+                printf("Sorry. Think of another nicknamen\n");
+                return 0;     
+            }
+        }
+        player.number = n + 1;
+        strcpy( player.name, new_name);
+    } else printf("Error of openning List\n");
+    printf("NEW, [%d %s]\n", player.number, player.name);
+    printf("Hello, %s! You are registered\n", new_name);
+    freopen("List.txt", "a+", l);
+    fprintf(l, "%d.%s\n", player.number, player.name);
+    fclose(l);
+    return player.number;
 }
 
 int check_in_name(char new_name[], int all)
@@ -36,14 +66,27 @@ int check_in_name(char new_name[], int all)
             printf("Only ABC. Do not use space or <\\> and <#>\n");
             return 0;
         }
-    return 1;
+    return check_individual(new_name);
 }
 
-int check_list(int num)
+int check_list(int num) /* ok ? num : 0;*/
 {
-    printf("LIST \n");
-    
-    return num;
+    char str[16];
+    int n = -1;
+    FILE *l = fopen("List.txt", "r");
+    if (l != NULL) {
+        while (!feof(l)) {
+            fscanf(l, "%d.%s\n", &n, str);
+            if (num == n) {
+                player.number = n;
+                strcpy( player.name, str);
+                break;
+            }
+        }
+    } else printf("Error of openning List\n");
+    fclose(l);
+    (player.number == 0) ? (printf("Not found\n")) : (printf("Welcome back, %s\n", str));
+    return player.number;
 }
 
 int main(){
@@ -62,11 +105,10 @@ int main(){
     }
     
     in = atoi(p);
-printf("--> [%s]", p);
     (in * f == 0) ? (in = check_in_name(p, i)) : (in = check_list(in));
     printf("IN = %d\n", in);
     
-    printf("Yor choose: ");
+    printf("Your choose: ");
     scanf("%s", p);
     printf("--> [%s]", p);
     return 0;
