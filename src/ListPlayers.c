@@ -5,7 +5,7 @@
  Построение выбора меню
  
 */
-#include "ListPlayers.h"
+#include "include/ListPlayers.h"
 
 int main(){
     char s[16] = {0};
@@ -43,6 +43,7 @@ int schr(const char * str, const char ch)
 int check_individual(char new_name[]) /* ok ? new_num : 0;*/
 {
     char str[16];
+    char profile[30] = "data/Users/";
     int n = -1;
     FILE *l = fopen("data/Game/ListPlayers.txt", "r");
     if (l != NULL) {
@@ -60,6 +61,10 @@ int check_individual(char new_name[]) /* ok ? new_num : 0;*/
     printf("Hello, %s! You are registered\n", new_name);
     freopen("data/Game/ListPlayers.txt", "a+", l);
     fprintf(l, "%d.%s\n", player.number, player.name);
+    strcat(profile, player.name);
+    strcat(profile, ".txt\0");
+    printf("PROF[%s]\n", profile);
+    freopen(profile, "w", l);
     fclose(l);
     return player.number;
 }
