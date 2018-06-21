@@ -5,18 +5,32 @@
  Построение выбора меню
  
 */
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#define RUS "#\\ АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдеёжзийклмнопрстуфхцчшщъыьэюя"
+#include "ListPlayers.h"
 
-struct User{
-    int number;    
-    char name[15];
-    int points;
-    int level;
-    float accur;
-} player;
+int main(){
+    char s[16] = {0};
+    char *p = s, c;
+    int i = 0, in = 0, f = 1;
+
+    printf("Enter Your num or New name: ");
+    while((c = getc(stdin))!='\n')
+    {   
+        if (i < 15) {
+            s[i] = c;
+            (c >= '0' && c <= '9') ? (f *=f) : (f = 0);
+        }
+        i++;
+    }
+    
+    in = atoi(p);
+    (in * f == 0) ? (in = check_in_name(p, i)) : (in = check_list(in));
+    printf("IN = %d\n", in);
+    
+    printf("Your choose: ");
+    scanf("%s", p);
+    printf("--> [%s]", p);
+    return 0;
+}
 
 int schr(const char * str, const char ch)
 {
@@ -89,28 +103,3 @@ int check_list(int num) /* ok ? num : 0;*/
     return player.number;
 }
 
-int main(){
-    char s[16] = {0};
-    char *p = s, c;
-    int i = 0, in = 0, f = 1;
-
-    printf("Enter Your num or New name: ");
-    while((c = getc(stdin))!='\n')
-    {   
-        if (i < 15) {
-            s[i] = c;
-            (c >= '0' && c <= '9') ? (f *=f) : (f = 0);
-        }
-        i++;
-    }
-    
-    in = atoi(p);
-    (in * f == 0) ? (in = check_in_name(p, i)) : (in = check_list(in));
-    printf("IN = %d\n", in);
-    
-    printf("Your choose: ");
-    scanf("%s", p);
-    printf("--> [%s]", p);
-    return 0;
-
-}
