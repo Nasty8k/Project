@@ -44,7 +44,7 @@ int check_individual(char new_name[]) /* ok ? new_num : 0;*/
 {
     char str[16];
     int n = -1;
-    FILE *l = fopen("List.txt", "r");
+    FILE *l = fopen("data/Game/ListPlayers.txt", "r");
     if (l != NULL) {
         while (!feof(l)) {
             fscanf(l, "%d.%s\n", &n, str);
@@ -58,7 +58,7 @@ int check_individual(char new_name[]) /* ok ? new_num : 0;*/
     } else printf("Error of openning List\n");
     printf("NEW, [%d %s]\n", player.number, player.name);
     printf("Hello, %s! You are registered\n", new_name);
-    freopen("List.txt", "a+", l);
+    freopen("data/Game/ListPlayers.txt", "a+", l);
     fprintf(l, "%d.%s\n", player.number, player.name);
     fclose(l);
     return player.number;
@@ -87,7 +87,7 @@ int check_list(int num) /* ok ? num : 0;*/
 {
     char str[16];
     int n = -1;
-    FILE *l = fopen("List.txt", "r");
+    FILE *l = fopen("data/Game/ListPlayers.txt", "r");
     if (l != NULL) {
         while (!feof(l)) {
             fscanf(l, "%d.%s\n", &n, str);
