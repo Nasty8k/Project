@@ -3,30 +3,37 @@
  1) Существует ли имя в списке
  2) Создание файла <NAME>.txt игрока в data/Users
  3) Варианты выхода с успехом (1) или ошибкой (-1)
-   проверку на латинские буквы
+
    проверку списка
    построение выбора меню
 */
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#define RUS "#\\ АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдеёжзийклмнопрстуфхцчшщъыьэюя"
 
-int check_in_name(char *new_name, int all)
+int schr(const char * str, const char ch)
+{
+    int i, idx = -1;
+    for(i = 0; (str[i] != '\0') && (str[i] != ch); i++);
+    if (str[i] == ch) idx = i;
+    return idx;
+}
+
+int check_in_name(char new_name[], int all)
 {
     int len = strlen(new_name);
     if ((all >= 15) || (all == 0)) {
         printf("The lenght of name from 1 to 15\n");
         return 0;
     }
-    if ((*new_name >= '0') && (*new_name <= '9')) {
+    if ((new_name[0] >= '0') && (new_name[0] <= '9')) {
         printf("the first letter must be a symbol\n");
         return 0;
-    }   
+    }
     for(int i = 0; i < len; i++)
-        if ((new_name[i] == ' ')
-            || (new_name[i] == '#')
-               || (new_name[i] == '\\')) {
-            printf("Do not use space or <\\> and <#>\n");
+        if (schr(RUS, new_name[i]) >= 0) {
+            printf("Only ABC. Do not use space or <\\> and <#>\n");
             return 0;
         }
     return 1;
@@ -53,8 +60,9 @@ int main(){
         }
         i++;
     }
+    
     in = atoi(p);
-
+printf("--> [%s]", p);
     (in * f == 0) ? (in = check_in_name(p, i)) : (in = check_list(in));
     printf("IN = %d\n", in);
     
