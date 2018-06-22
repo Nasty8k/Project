@@ -15,8 +15,8 @@ int menu(char vvod)
                 opening();
                 while (getc(stdin) != '\n');
                 if (player.number == 0) {
-                    printf("Please sign in\n");
-                    show_ListPlayers();
+                    printf("Please check in\n");
+                    check_in();
                 }
                 printf("%sLet's go to...%s ", GREEN, RESET);
                 scanf("%c", &in);

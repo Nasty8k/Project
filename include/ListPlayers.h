@@ -19,4 +19,5 @@ int check_individual(char new_name[]);
 int check_in_name(char new_name[], int all);
 int check_list(int num);
 void show_ListPlayers(void);
+int check_in(void);
 #endif

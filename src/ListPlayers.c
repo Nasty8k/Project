@@ -1,6 +1,8 @@
 #include "ListPlayers.h"
-/*
-int main(){
+
+int check_in(void)
+{
+    show_ListPlayers();
     char s[16] = {0};
     char *p = s, c;
     int i = 0, in = 0, f = 1;
@@ -17,14 +19,9 @@ int main(){
     
     in = atoi(p);
     (in * f == 0) ? (in = check_in_name(p, i)) : (in = check_list(in));
-    printf("IN = %d\n", in);
-    
-    printf("Your choose: ");
-    scanf("%s", p);
-    printf("--> [%s]", p);
-    return 0;
+    return in;
 }
-*/
+
 int schr(const char * str, const char ch)
 {
     int i, idx = -1;
