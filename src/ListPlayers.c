@@ -1,5 +1,5 @@
-#include "include/ListPlayers.h"
-
+#include "ListPlayers.h"
+/*
 int main(){
     char s[16] = {0};
     char *p = s, c;
@@ -24,7 +24,7 @@ int main(){
     printf("--> [%s]", p);
     return 0;
 }
-
+*/
 int schr(const char * str, const char ch)
 {
     int i, idx = -1;
@@ -101,3 +101,15 @@ int check_list(int num) /* ok ? num : 0;*/
     return player.number;
 }
 
+void show_ListPlayers(void)
+{
+    FILE *l = fopen("data/Game/ListPlayers.txt", "r");
+    int n;
+    char str[16];
+    if (l != NULL) {
+        while (!feof(l)) {
+            fscanf(l, "%d.%s\n", &n, str);
+            fprintf(stdout, "%d -> %s\n", n, str);
+        }
+    } else printf("Error of openning List\n");
+}

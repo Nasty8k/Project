@@ -14,7 +14,10 @@ int menu(char vvod)
                 system("clear");
                 opening();
                 while (getc(stdin) != '\n');
-                if (player.number == 0) printf("Please sign in\n");
+                if (player.number == 0) {
+                    printf("Please sign in\n");
+                    show_ListPlayers();
+                }
                 printf("%sLet's go to...%s ", GREEN, RESET);
                 scanf("%c", &in);
                 menu(in); 
