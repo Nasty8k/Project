@@ -13,12 +13,4 @@ int timer, strings;
 int menu(char vvod);
 int main(void);
 
-struct User{
-    int number;    
-    char name[15];
-    int points;
-    int level;
-    float accur;
-};
-
 #endif

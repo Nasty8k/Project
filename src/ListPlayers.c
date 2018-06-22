@@ -1,10 +1,3 @@
-/*
- Нужна проверка и дороботка.
-
- Создание файла <NAME>.txt игрока в data/Users
- Построение выбора меню
- 
-*/
 #include "include/ListPlayers.h"
 
 int main(){

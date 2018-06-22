@@ -10,7 +10,6 @@ int menu(char vvod)
     char in = '#';
         switch(vvod) {
             case '1':
-                printf("Play:\n");
                 break;
             case '2':
                 printf("Quick game\n");
