@@ -1,8 +1,8 @@
-#include "data_global.h"
-#include "game_opening.h"
-/*После заполнения информацией для пользователя INFO будет включен в 5 пункт меню*/
+#include "INFO.h"
+
 void information(void)
 {
+    system("clear");
     opening();
     printf("WELCOME!\n");
     printf("[1. PLAY] is the main of game process\n");
