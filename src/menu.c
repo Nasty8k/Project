@@ -16,8 +16,8 @@ int menu(char vvod)
                 while (getc(stdin) != '\n');
                 if (player.number == 0) {
                     printf("Please check in\n");
-                    check_in();
-                }
+                    rez = check_in();
+                } else printf("DEVELOP! Need start game for %s\n", player.name);
                 printf("%sLet's go to...%s ", GREEN, RESET);
                 scanf("%c", &in);
                 menu(in); 
