@@ -20,10 +20,8 @@ bin/menu.o: src/menu.c
 bin/INFO.o: src/INFO.c
 	$(CC) -c -I include src/INFO.c -o bin/INFO.o 
 
-bin:
-	mkdir bin
-	
 clean:
 	rm -rf bin
+	mkdir bin
 	
 .PHONY: clean
