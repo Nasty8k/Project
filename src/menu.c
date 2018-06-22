@@ -1,5 +1,6 @@
 #include "game_opening.h"
 #include "settings.h"
+#include "ListPlayers.h"
 #include "INFO.h"
 #include "data_global.h"
 
@@ -10,6 +11,13 @@ int menu(char vvod)
     char in = '#';
         switch(vvod) {
             case '1':
+                system("clear");
+                opening();
+                while (getc(stdin) != '\n');
+                if (player.number == 0) printf("Please sign in\n");
+                printf("%sLet's go to...%s ", GREEN, RESET);
+                scanf("%c", &in);
+                menu(in); 
                 break;
             case '2':
                 printf("Quick game\n");
