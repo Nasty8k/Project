@@ -1,2 +1,2 @@
-1. Player1
-
+1.Player1
+2.Player2
