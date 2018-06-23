@@ -28,7 +28,10 @@ void compare_string(char *s1,char *s2, struct progress *prog){ // сравнив
 		            prog->points = prog-> points +1;
 			    }else prog->points = prog-> points +2;
 			}
-		}else prog-> wrong_s = prog-> wrong_s +1;
+		}else {
+			prog-> wrong_s = prog-> wrong_s +1;
+			prog->points = prog-> points -1;
+		}
 	}
 		
 	fprintf(stdout,"%d\t%d\t%d\n",prog-> points, prog-> right_s,prog-> wrong_s );
@@ -90,8 +93,11 @@ int training(int n_string, struct User *player)
     fclose(file);
     printf("Отлично\n");
 	player -> level = level + n_string + 1;
+	printf("Your level is %d\n", player -> level);
 	player -> points = player-> points + prog.points;
+	printf("Your points  is %d\n", player -> points);
     player -> accur = MAX / player -> points;
+    printf("Your arrur is %f\n", player -> arrur);
 	
 	
     return 0;	
