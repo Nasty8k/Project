@@ -11,6 +11,5 @@
 
 int timer, strings;
 int menu(char vvod);
-int main(void);
 
 #endif

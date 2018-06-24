@@ -6,6 +6,9 @@ CFLAGS = -Wall -Werror -std=c99
 
 default: build bin bin/program
 
+test: bin/program-test
+	./bin/program-test
+
 bin/program: $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) -o bin/program
 
@@ -26,6 +29,12 @@ build/INFO.o: src/INFO.c
 
 build/ListPlayers.o: src/ListPlayers.c
 	$(CC) -c -I include src/ListPlayers.c -o build/ListPlayers.o
+	
+bin/program-test: build/settings.o build/ListPlayers.o build/main_test.o
+	$(CC) $(CFLAGS) build/settings.o build/ListPlayers.o build/main_test.o -o bin/program-test
+
+build/main_test.o: test/main.c thirdparty/ctest.h include/data_global.h include/settings.h include/ListPlayers.h
+	$(CC) $(CFLAGS) -I thirdparty -c test/main.c -o build/main_test.o
 		
 clean:
 	rm -rf bin build

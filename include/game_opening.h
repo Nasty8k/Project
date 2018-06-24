@@ -9,8 +9,7 @@
 
 char *settime(struct tm *u);
 void opening(void);
-
-
+int main(void);
 #endif
 
 
