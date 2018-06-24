@@ -16,7 +16,6 @@ int check_in(void)
         }
         i++;
     }
-    
     in = atoi(p);
     (in * f == 0) ? (in = check_in_name(p, i)) : (in = check_list(in));
     return in;
@@ -56,6 +55,7 @@ int check_individual(char new_name[]) /* ok ? new_num : 0;*/
     printf("PROF[%s]\n", profile);
     freopen(profile, "w", l);
     fclose(l);
+
     return player.number;
 }
 
@@ -95,6 +95,7 @@ int check_list(int num) /* ok ? num : 0;*/
     } else printf("Error of openning List\n");
     fclose(l);
     (player.number == 0) ? (printf("Not found\n")) : (printf("Welcome back, %s\n", str));
+
     return player.number;
 }
 

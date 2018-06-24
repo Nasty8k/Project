@@ -6,10 +6,12 @@
 
 int main(void){ 
     char vvod;
+    int i = 0;
     opening( );   
     printf("YOUR CHOICE: ");
     scanf("%c", &vvod);
-    if ((vvod >= '1') && (vvod <= '5')) {
+    while (getc(stdin) != '\n') i++;    
+    if ((vvod >= '1') && (vvod <= '5') && (i == 0)) {
        menu(vvod);
        return 0;
     } else {
@@ -20,6 +22,6 @@ int main(void){
            system("clear");
            main();
        }
-    }  
+    }
     return 0;
 }

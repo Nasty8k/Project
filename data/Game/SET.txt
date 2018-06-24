@@ -1,2 +1,2 @@
-timer 5
-strings 7
+timer 54
+strings 76

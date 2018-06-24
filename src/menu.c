@@ -7,19 +7,19 @@
 int menu(char vvod)
 {
     opening();
-    int rez = 0;
+    int rez = 0, i = 0;
     char in = '#';
         switch(vvod) {
             case '1':
                 system("clear");
                 opening();
-                while (getc(stdin) != '\n');
                 if (player.number == 0) {
                     printf("Please check in\n");
                     rez = check_in();
                 } else printf("DEVELOP! Need start game for %s\n", player.name);
                 printf("%sLet's go to...%s ", GREEN, RESET);
                 scanf("%c", &in);
+                while (getc(stdin) != '\n') i++;    
                 menu(in); 
                 break;
             case '2':
@@ -34,11 +34,12 @@ int menu(char vvod)
                     opening( );
                     printf("%sNot correct%s(Have question? Look at INFO)%s\n"
                            "Let's go to...%s ", RED, GREEN, YELOW, RESET);
-                    scanf("%c", &in);
-                    menu(in); 
+                    main();
+                    //menu(in); 
               }                                            
             break;
         case '4':
+        while (getc(stdin) != '\n');
             printf("Table\n");
             break;
         case '5':
