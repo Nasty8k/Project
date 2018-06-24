@@ -1,21 +1,9 @@
 #include <stdio.h>
 #include "training.h"
 
+#define N 1000000
+
 int check;
-int exit_print()
-{
-    char s;
-    printf("Уверены что хотите выйти?\n"
-            " YES(y) or NO(n)\n");	
-	scanf("%c", &s);
-	printf("%c\n",s);
-	
-	if( s == 'y')
-	   return 2;
-	 
-	 return 0;
-}
-	
 
 void compare_string(char *s1,char *s2, struct progress *prog){ // сравнивает данную и введенную строку
 	
@@ -33,28 +21,37 @@ void compare_string(char *s1,char *s2, struct progress *prog){ // сравнив
 			prog->points = prog-> points -1;
 		}
 	}
+	if(strlen(s1) < strlen(s2))
+		prog-> wrong_s = prog-> wrong_s + strlen(s2) - strlen(s1);
 		
-	fprintf(stdout,"%d\t%d\t%d\n",prog-> points, prog-> right_s,prog-> wrong_s );
+	fprintf(stdout,"Right symbols: %d\t Wrong symbols: %d\n", prog-> right_s,prog-> wrong_s );
 }	
 
 int write_string(char *string, struct progress *prog){
 	
-	char s2[69];
+	char s2[N];
 	check = 0;
 	printf("Начинайте ввод\n");
 	printf("Если хотите выйти нажмите # + Enter\n ");
 	printf("\n");
-	fprintf(stdout, "%s\n", string);
+    fprintf(stdout, "%s\n", string);
 	
-	int i =0;
-	do{
+	//int i = 0;
+	
+	fgets(s2, N, stdin);
+
+	if(strchr(s2, '#'))
+			return -1;
+
+	
+	/*do{
 	    scanf("%c",&s2[i]);	
 	    if (s2[i] == '#')
            return -1;
 	   
 		i++;
 	    }while(s2[i-1] != '\n');
-	    s2[i-1] = '\0';
+	    s2[i-1] = '\0';*/
 	   
     compare_string(string,s2, prog);
     
@@ -63,42 +60,45 @@ int write_string(char *string, struct progress *prog){
 
 int training(int n_string, struct User *player)
 {
+	getc(stdin);// чистит входной поток от '\n'
+	system("clear");
 	
 	int level;
 	FILE *file;
 	char string1[n_string][69], s[69];
-	struct progress prog;
-	prog.wrong_s = -1;
-	prog.right_s= 0;
-	prog.points = 0;
 	struct progress *p_prog;
-	p_prog =&prog;
+	p_prog = (struct progress*)malloc(sizeof(struct progress));
+	p_prog -> wrong_s = -1;
+	p_prog -> right_s= 0;
+	p_prog -> points = 0;
+	
+	
 	
 	file = fopen("GAME.txt", "r");
 	level = (player -> level)-1;
 	
 	for (int i = 0; i < (level + n_string); i++){
-		fgets(s, 69, file);
 		if (i == level)
 		   for (int g = 0; g < n_string; g ++){
 			   fgets(string1[g], 69, file);
+			   check = write_string(string1[g], p_prog);
+				if (check == -1)
+					return 0;
 		   }
+		fgets(s, 69, file);
 		}
 	
-	for (int i = 0; i < n_string; i++){
-		    check = write_string(string1[i], p_prog);
-		    if (check == -1)
-		    	return -1;
-    }
+	
     fclose(file);
     printf("Отлично\n");
 	player -> level = level + n_string + 1;
 	printf("Your level is %d\n", player -> level);
-	player -> points = player-> points + prog.points;
+	player -> points = player-> points + p_prog -> points;
 	printf("Your points  is %d\n", player -> points);
     player -> accur = MAX / player -> points;
-    printf("Your arrur is %f\n", player -> arrur);
+    printf("Your accur is %f\n", player -> accur);
 	
+	free(p_prog);
 	
     return 0;	
 }
