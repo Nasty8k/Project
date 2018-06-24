@@ -23,7 +23,11 @@ int menu(char vvod)
                 menu(in); 
                 break;
             case '2':
-                printf("Quick game\n");
+                razminka (timer);
+                printf("%sLet's go to...%s ", GREEN, RESET);
+                scanf("%c", &in);
+                while (getc(stdin) != '\n') i++;    
+                menu(in);
                 break;
             case '3':
                 rez = settings_user( );
