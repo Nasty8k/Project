@@ -38,9 +38,10 @@ int menu(char vvod)
                     opening( );
                     printf("%sNot correct%s(Have question? Look at INFO)%s\n"
                            "Let's go to...%s ", RED, GREEN, YELOW, RESET);
-                    main();
-                    //menu(in); 
-              }                                            
+                    scanf("%c", &in);
+                    while (getc(stdin) != '\n') i++;
+                    menu(in);
+                }
             break;
         case '4':
         while (getc(stdin) != '\n');

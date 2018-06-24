@@ -13,7 +13,10 @@ int razminka(int timer)
         printf("%c --> ", ch);
         while ((vvod = getc(stdin)) != '\n') {
             (ch -= vvod) ? mist++ : correct++;
-            if (vvod == '#') return 0; 
+            if (vvod == '#') {
+                while ((vvod = getc(stdin)) != '\n');
+                return 0;
+            }
         }
         s_time2 = time (NULL);
         total += difftime(s_time2, s_time1);

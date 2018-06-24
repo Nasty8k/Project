@@ -31,7 +31,7 @@ int settings_user(void) /*correct ? return 1 : return 0*/
     int set_t = 0, set_s = 0;
     printf("now TIMER is %d and STRINGS to write is %d\n", timer, strings);
     printf("\tyour settings:\n");
-    fgetc(stdin);
+//    fgetc(stdin);
     printf("-->TIMER = ");
     scanf("%3s", Sset_t);
     set_t = atoi(Sset_t);
