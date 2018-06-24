@@ -1,6 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
+#include "game_opening.h"
 
 int razminka(int timer)
 {
@@ -9,7 +7,7 @@ int razminka(int timer)
     float accuracy;
     long int s_time1, s_time2, total = 0.0;
 
-while (total < timer) {
+    while (total < timer) {
         s_time1 = time (NULL);
         ch = ('A' + rand()%('z'-'A'));
         printf("%c --> ", ch);
