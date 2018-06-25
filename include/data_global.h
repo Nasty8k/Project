@@ -9,7 +9,15 @@
 #define WHITE "\033[37m"
 #define BLACK "\033[0;30m" 
 
+struct User{
+    int number;    
+    char name[15];
+    int points;
+    int level;
+    float accur;
+} player;
+
+char *day;
 int timer, n_strings;
 int menu(char vvod);
-
 #endif

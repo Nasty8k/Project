@@ -4,15 +4,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "data_global.h"
 #define RUS "#\\ АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдеёжзийклмнопрстуфхцчшщъыьэюя"
-
-struct User{
-    int number;    
-    char name[15];
-    int points;
-    int level;
-    float accur;
-} player;
 
 int schr(const char * str, const char ch);
 int check_individual(char new_name[]);

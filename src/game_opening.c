@@ -15,7 +15,7 @@ char * settime(struct tm *u)
 void opening(void)
 {
     const time_t time_d = time(NULL);
-    char *day = settime(localtime(&time_d));
+    day = settime(localtime(&time_d));
     settings_inital( ); 
     
     system("clear");
