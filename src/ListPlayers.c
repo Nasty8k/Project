@@ -12,7 +12,7 @@ int check_in(void)
     {   
         if (i < 15) {
             s[i] = c;
-            (c >= '0' && c <= '9') ? (f *=f) : (f = 0);
+            (c >= '0' && c <= '9') ? (f *= f) : (f = 0);
         }
         i++;
     }
@@ -20,6 +20,8 @@ int check_in(void)
     (in * f == 0) ? (in = check_in_name(p, i)) : (in = check_list(in));
     return in;
 }
+
+
 
 int schr(const char * str, const char ch)
 {
@@ -29,7 +31,7 @@ int schr(const char * str, const char ch)
     return idx;
 }
 
-int check_individual(char new_name[]) /* ok ? new_num : 0;*/
+int check_individual(char new_name[]) /* ok ? 1 : 0;*/
 {
     char str[16];
     char profile[30] = "data/Users/";
@@ -55,8 +57,7 @@ int check_individual(char new_name[]) /* ok ? new_num : 0;*/
     printf("PROF[%s]\n", profile);
     freopen(profile, "w", l);
     fclose(l);
-
-    return player.number;
+    return 1;
 }
 
 int check_in_name(char new_name[], int all)
@@ -72,7 +73,7 @@ int check_in_name(char new_name[], int all)
     }
     for(int i = 0; i < len; i++)
         if (schr(RUS, new_name[i]) >= 0) {
-            printf("Only ABC. Do not use space or <\\> and <#>\n");
+            printf("Only ABC. Don't use space or \\ and #\n");
             return 0;
         }
     return check_individual(new_name);

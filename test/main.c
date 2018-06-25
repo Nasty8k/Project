@@ -28,6 +28,29 @@ CTEST(Set_str, Incorrect) {
     ASSERT_EQUAL(expected,result);
 }
 
+CTEST(Name_rus, Incorrect) {
+    int result = check_in_name("Гит125", 6);
+    int expected = 0;
+    ASSERT_EQUAL(expected,result);
+}
+
+CTEST(Name_symb, Incorrect) {
+    int result = check_in_name("fg#", 3);
+    int expected = 0;
+    ASSERT_EQUAL(expected,result);
+}
+
+CTEST(Name_long, Incorrect) {
+    int result = check_in_name("qwerty12345testy", 16);
+    int expected = 0;
+    ASSERT_EQUAL(expected,result);
+}
+
+CTEST(Name_num, Incorrect) {
+    int result = check_in_name("8test", 5);
+    int expected = 0;
+    ASSERT_EQUAL(expected,result);
+}
 
 int main(int argc, const char** argv) {
     int test_res = ctest_main(argc, argv);
