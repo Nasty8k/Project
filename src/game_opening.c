@@ -30,7 +30,7 @@ void opening(void)
     printf("\t\t\t\t  ____  ____  ____  ____  ____  ____ \n");
     printf(" %s\t %s||n |||%s|i ||%s||n ||%s||j |||%s|a ||||%s¤ ||\n", day, RED, CYAN, GREEN, YELOW, WHITE, RESET);
     printf("\t\t\t\t ||__||||__||||__||||__||||__||||__||\n"
-                " %s: %s %2d %s %2d\t |/__\\||/__\\||/__\\||/__\\||/__\\||/__\\|\n",  "SET", "time", timer, "|strings", strings);
+                " %s: %s %2d %s %2d\t |/__\\||/__\\||/__\\||/__\\||/__\\||/__\\|\n",  "SET", "time", timer, "|strings", n_strings);
     printf("===========================\n%s 1.PLAY\n%s 2.QUICK GAME\n%s 3.SETTINGS\n%s 4.TABLE\n%s 5.INFO\t\tEXIT #%s\n===========================\n", RED, CYAN, GREEN, YELOW, WHITE, RESET);
                                                                           
      

@@ -9,7 +9,7 @@
 #define WHITE "\033[37m"
 #define BLACK "\033[0;30m" 
 
-int timer, strings;
+int timer, n_strings;
 int menu(char vvod);
 
 #endif
