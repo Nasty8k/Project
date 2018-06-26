@@ -9,7 +9,7 @@
 #define WHITE "\033[37m"
 #define BLACK "\033[0;30m" 
 
-struct User{
+struct User {
     int number;    
     char name[15];
     int points;
