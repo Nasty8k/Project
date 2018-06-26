@@ -4,10 +4,10 @@ void information(void)
 {
     system("clear");
     opening();
-    printf("WELCOME!\n");
-    printf("[1. PLAY] is the main of game process\n");
-    printf("[2. QUICK GAME] is just for fun\n");
-    printf("[3. SETTINGS] You can change TIME and STRINGS (from 1 to 99)\n");
-    printf("[4. TABLE] statistic of game and users\n");
-    printf("[5. INFO] is here\n");
+    printf("%sW E L L %s\n", WHITE, RESET);
+    printf("[%s>PLAY%s]       is the main of game process\n", RED, RESET);
+    printf("[%s>QUICK GAME%s] is just for fun\n", CYAN, RESET);
+    printf("[%s>SETTINGS%s]   You can change TIME and STRINGS (from 1 to 99)\n", GREEN, RESET);
+    printf("[%s>TABLE%s]      statistic of game and users\n", YELOW, RESET);
+    printf("[%s>INFO%s]       is here\n", WHITE, RESET);
 }

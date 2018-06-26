@@ -1,2 +1,2 @@
-timer 5
-strings 5
+timer 2
+strings 2

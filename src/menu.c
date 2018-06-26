@@ -1,4 +1,6 @@
 #include "game_opening.h"
+#include "training.h"
+#include "statistics.h"
 #include "settings.h"
 #include "ListPlayers.h"
 #include "INFO.h"
@@ -14,10 +16,13 @@ int menu(char vvod)
                 system("clear");
                 opening();
                 if (player.number == 0) {
-                    printf("Please check in\n");
+                    printf("%sPlease check in%s\n", YELOW, RESET);
                     rez = check_in();
-                } else printf("DEVELOP! Need start game for %s\n", player.name);
-                printf("%sLet's go to...%s ", GREEN, RESET);
+                } else {
+                    training();
+                   // write_data();
+                }
+                printf("%sLet's go to...%s ", CYAN, RESET);
                 scanf("%c", &in);
                 while (getc(stdin) != '\n') i++;    
                 menu(in); 
@@ -44,21 +49,39 @@ int menu(char vvod)
                 }
             break;
         case '4':
-        while (getc(stdin) != '\n');
-            printf("Table\n");
+            system("clear");
+            opening();
+            printf("For you[1] OR general[2]\n");
+            printf("%sView -> %s", YELOW, RESET);
+            scanf("%c", &in);
+            while (getc(stdin) != '\n') i++;
+            switch(in) {
+                case '1':
+                     own_statistics(player.name);
+                     break;
+                 case '2':
+                     general_statistics();
+                     break;
+                 default:
+                     menu(4);
+                     break;
+            }
+            printf("%sLet's go to...%s", GREEN, RESET);
+            scanf("%c", &in);
+            while (getc(stdin) != '\n') i++;
+            menu(in);            
             break;
         case '5':
             information();
             printf("%sLet's go to...%s", YELOW, RESET);
-            while (getc(stdin) != '\n');
             scanf("%c", &in);
+            while (getc(stdin) != '\n') i++;
             menu(in);            
             break;
         case '#':
             printf("exit game\n");
             break;
         default:
-            while (getc(stdin) != '\n');
             system("clear");
             main();
             break;
@@ -67,5 +90,4 @@ int menu(char vvod)
     
     return 0;
 }
-
 

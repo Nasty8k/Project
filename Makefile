@@ -1,4 +1,4 @@
-OBJ = build/main.o build/game_opening.o build/settings.o build/menu.o build/INFO.o build/ListPlayers.o build/razminka.o
+OBJ = build/main.o build/game_opening.o build/settings.o build/menu.o build/INFO.o build/ListPlayers.o build/razminka.o build/training.o build/statistics.o
 CC = gcc
 CFLAGS = -Wall -Werror -std=c99
 
@@ -32,6 +32,12 @@ build/ListPlayers.o: src/ListPlayers.c
 	
 build/razminka.o: src/razminka.c
 	$(CC) -c -I include src/razminka.c -o build/razminka.o
+	
+build/training.o: src/training.c
+	$(CC) -c -I include src/training.c -o build/training.o
+	
+build/statistics.o: src/statistics.c
+	$(CC) -c -I include src/statistics.c -o build/statistics.o
 	
 bin/program-test: build/settings.o build/ListPlayers.o build/main_test.o
 	$(CC) $(CFLAGS) build/settings.o build/ListPlayers.o build/main_test.o -o bin/program-test

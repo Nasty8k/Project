@@ -20,4 +20,5 @@ struct User{
 char *day;
 int timer, n_strings;
 int menu(char vvod);
+
 #endif
