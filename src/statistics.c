@@ -1,23 +1,14 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 #include "statistics.h"
-
-void scopy(char *s1)//добавляет в ".txt"
-{
-    char s2[] = ".txt";
-    strcat(s1,s2);
-}
 
 int counter(char *file_name)// считает '\n'
 {
-    FILE *file;
+    FILE *file = fopen(file_name, "r");
+    if( file == NULL) return 0;
     int i = 0;
     char c;
-    file = fopen(file_name, "r");
     while ((c = fgetc(file)) != EOF){
         if (c == '\n')
-            i ++;
+            i++;
     }
     fclose(file);
     return i;
@@ -25,69 +16,65 @@ int counter(char *file_name)// считает '\n'
     
 void own_statistics(char *name)
 {
-    FILE *namef;
-    char  string[20][40];
-    scopy(name);
-    printf("YOUR STATISTICS\n");
-    
-    namef = fopen(name,"r");
-    
-    for ( int i = 0; i <= counter(name); i++){
-        fscanf(namef,"%s",string[i]); 
-        fprintf(stdout,"%s\n",string[i]);
+    char file_name[17] = {"data/Users/"};
+    char string[50] = {0};
+    char *str = string;
+    strcat(file_name, name);
+    strcat(file_name,".txt");
+    FILE *namef = fopen(file_name, "r");
+    if (namef == NULL) {
+        printf("Sorry, file not found\n");
+        return ;
     }
-    
-   
+    printf("YOUR STATISTICS\n");   
+    for ( int i = 0; i <= counter(file_name); i++){
+        fscanf(namef, "%s", str); 
+        fprintf(stdout, "%s\n", str);
+    } 
 }
 
-void general_statistics()
+void general_statistics(void)
 {
-
-    FILE *listf;
-    FILE *namef;
-    char c;
+    FILE *F_LP, *NAME_F;
+    char c, out[50] = {0}, l_name[20] = {0};
+    char list_string[30] = {"data/Game/ListPlayers.txt"};
+    char *list_pointer = list_string, *out_p = out, *list = l_name;
+    int num, j, i;
     printf("GENERAL STATISTICS\n");
-    
-    char *list_pointer;
-    int i = 0;
-    char list_string[] = {"ListPlayers.txt"};
-    list_pointer = &list_string;
-    i = counter(list_pointer);
-    
-    listf = fopen("ListPlayers.txt", "r");
-    char list[i][19];
-    char players[i][16];
-    int num;
+                   
+    //F_LP = fopen("data/Game/ListPlayers.txt", "r"); 
+    //(F_LP != NULL) ? printf("!!!!!") : printf("!!");
+    //i = counter(list_pointer); printf("%d I[]", i);
 
-
-    for ( int j = 0; j < i; j++){
-        fscanf(listf,"%d%c%s",&num,&c,list[j]); 
-        strcpy(players[j],list[j]);
-    }
+    //for (j = 0; j < i; j++) fscanf(F_LP, "%d.%s", &num, list); printf("%d%s, ", num, list);
     
     //добавление  к имени игрока ".txt"
-    for ( int j = 0; j < i; j++){
-       scopy(list[j]);
-    }
+   /* for (j = 0; j < i; j++) strcat(list,".txt");
     
-    for(int g = 0; g < i; g ++){// открытие файла типа NAME.txt
+    for (j = 0; j < i; j++){// открытие файла типа NAME.txt
         char *name_pointer;
-        name_pointer = &list[g]; 
-        namef = fopen(name_pointer,"r"); 
-        char name[counter(name_pointer)][32];
-        
-        fprintf(stdout,"%s|",players[g]);
-        
-        for( int p =0; p <= counter(name_pointer); p++){
-            fscanf(namef,"%s",name[p]);
-            if (p == (counter(name_pointer)) - 1) //Вывод последней строки на экран
-            fprintf(stdout,"%s\n",name[p]);
+        char name_string[30] = {"data/Users/"};
+        strcat(name_pointer, list);
+        NAME_F = fopen(name_pointer, "r");
+        if (NAME_F != NULL) {
+            while (fgets(out_p, 49, NAME_F) != NULL);
+            fprintf(stdout, "%s| %s\n", list, out_p);       
+            fclose(NAME_F);
         }
-        
-        fclose(namef);
-    }
-
-    
-    
-    fclose(listf);
+    }   
+    fclose(F_LP);*/
 }
+/*
+void write_data(void)
+{
+    char name_string[30] = {"data/Users/"};
+    char *name_P = name_string;
+    char *out = malloc(50 * sizeof(char));   
+    strcat(name_P, player.name);
+    strcat(name_P, ".txt");
+    printf("[%s]", name_P);
+    FILE *f = fopen(name_P, "a+"); (f == NULL) ? (printf("!NULL\n")) : (printf("!OK\n"));
+    while(fgets(out, 49, f));
+    fprintf(f, "%s|%d|%d|%.0f|%c%c\n", day, player.points, player.level, player.points, player.points, player.accur, player.ps[0], player.ps[1]);
+    fclose(f);
+}*/
