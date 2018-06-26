@@ -20,7 +20,6 @@ int menu(char vvod)
                     rez = check_in();
                 } else {
                     training();
-                   // write_data();
                 }
                 printf("%sLet's go to...%s ", CYAN, RESET);
                 scanf("%c", &in);
@@ -51,7 +50,7 @@ int menu(char vvod)
         case '4':
             system("clear");
             opening();
-            printf("For you[1] OR general[2]\n");
+            printf("For %syou[1]%s OR %sgeneral[2]%s?\n", YELOW, RESET, YELOW, RESET);
             printf("%sView -> %s", YELOW, RESET);
             scanf("%c", &in);
             while (getc(stdin) != '\n') i++;

@@ -66,7 +66,7 @@ int training(void)
                            "%sCONGRATULATE%sCONGRATULATE%s\n", RED, CYAN, GREEN, YELOW, WHITE, RESET);
     fclose(file);
     
-    total = (prog->right_s/(prog->right_s + prog->wrong_s)) * 100; // printf("F%f", total);
+    total = (prog->right_s/(prog->right_s + prog->wrong_s)) * 100;
     if (total > 50.00) {
         player.level = level + i;
         printf("Your %sLevelUP   is %d%s\n", RED, player.level, RESET);
