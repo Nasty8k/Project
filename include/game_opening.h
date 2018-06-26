@@ -9,7 +9,6 @@
 
 char *settime(struct tm *u);
 void opening(void);
-int main(void);
 int razminka(int timer);
 #endif
 

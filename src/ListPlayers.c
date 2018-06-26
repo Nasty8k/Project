@@ -1,5 +1,5 @@
 #include "ListPlayers.h"
-
+#include "game_opening.h"
 int check_in(void)
 {
     show_ListPlayers();
@@ -15,7 +15,7 @@ int check_in(void)
         }
         i++;
     }
-    opening();
+    
     in = atoi(p);
     (in * f == 0) ? (in = check_in_name(p, i)) : (in = check_list(in));
     if (in != 0) return User_data();

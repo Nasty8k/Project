@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "data_global.h"
-#include "game_opening.h"
+
 
 #define RUS "#\\ АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдеёжзийклмнопрстуфхцчшщъыьэюя"
 
