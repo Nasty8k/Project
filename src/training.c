@@ -71,7 +71,7 @@ int training(void)
         player.level = level + i;
         printf("Your %slevelUP   is %d%s\n", RED, player.level, RESET);
     } else {
-        printf("Your %sNotUp   is %d%s\n", RED, player.level, RESET);
+        printf("Your %sLevelNotUp   is %d%s\n", RED, player.level, RESET);
     }
 	
 	player.points = player.points + prog->points;
