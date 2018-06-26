@@ -1,11 +1,24 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include "statistics.h"
+
+void scopy(char *s1)//добавляет в ".txt"
+{
+    char s2[] = ".txt";
+    strcat(s1,s2);
+}
 
 int counter(char *file_name)// считает '\n'
 {
-    FILE *file = fopen(file_name, "r");
-    if( file == NULL) return 0;
+    FILE *file;
     int i = 0;
     char c;
+    file = fopen(file_name, "r");
+    if(file == NULL) {
+		printf("Can't open file");
+		return -1;
+	}
     while ((c = fgetc(file)) != EOF){
         if (c == '\n')
             i++;
@@ -23,11 +36,11 @@ void own_statistics(char *name)
     strcat(file_name,".txt");
     FILE *namef = fopen(file_name, "r");
     if (namef == NULL) {
-        printf("Sorry, file not found\n");
+        printf("Sorry, we can't show your statistics. Registered or check in\n ");
         return ;
     }
     printf("YOUR STATISTICS\n");   
-    for ( int i = 0; i <= counter(file_name); i++){
+    for ( int i = 0; i <= counter(file_name)- 1; i++){
         fscanf(namef, "%s", str); 
         fprintf(stdout, "%s\n", str);
     } 
@@ -35,34 +48,58 @@ void own_statistics(char *name)
 
 void general_statistics(void)
 {
-    FILE *F_LP, *NAME_F;
-    char c, out[50] = {0}, l_name[20] = {0};
-    char list_string[30] = {"data/Game/ListPlayers.txt"};
-    char *list_pointer = list_string, *out_p = out, *list = l_name;
-    int num, j, i;
+    FILE *listf;
+    FILE *namef;
+    char c;
     printf("GENERAL STATISTICS\n");
-                   
-    //F_LP = fopen("data/Game/ListPlayers.txt", "r"); 
-    //(F_LP != NULL) ? printf("!!!!!") : printf("!!");
-    //i = counter(list_pointer); printf("%d I[]", i);
+    
+   
+    int i = 0;
+    char list_string[] = {"data/Game/ListPlayers.txt"};
+    i = counter(list_string);
+    
+    listf = fopen("data/Game/ListPlayers.txt", "r");
+     if(listf == NULL) {
+		printf("ERROE");
+		return;
+	}
+    
+    char dir[] = {"data/Users/"};
+    char list[i][100];
+    char players[i][100];
+    int num;
+	
 
-    //for (j = 0; j < i; j++) fscanf(F_LP, "%d.%s", &num, list); printf("%d%s, ", num, list);
+    for ( int j = 0; j < i; j++){
+        fscanf(listf,"%d%c%s",&num,&c,players[j]);
+        strcpy(list[j],dir);
+        strcat(list[j],players[j]);
+        
+    }
     
     //добавление  к имени игрока ".txt"
-   /* for (j = 0; j < i; j++) strcat(list,".txt");
+    for ( int j = 0; j < i; j++){
+       scopy(list[j]);
+    }
     
-    for (j = 0; j < i; j++){// открытие файла типа NAME.txt
-        char *name_pointer;
-        char name_string[30] = {"data/Users/"};
-        strcat(name_pointer, list);
-        NAME_F = fopen(name_pointer, "r");
-        if (NAME_F != NULL) {
-            while (fgets(out_p, 49, NAME_F) != NULL);
-            fprintf(stdout, "%s| %s\n", list, out_p);       
-            fclose(NAME_F);
-        }
-    }   
-    fclose(F_LP);*/
+    for(int g = 0; g < i; g ++){// открытие файла типа NAME.txt
+        namef = fopen(list[g],"r"); 
+        char name[100];
+        
+        fprintf(stdout,"%s|",players[g]);
+        
+        for( int p =0; p < counter(list[g]); p++)
+			fgets(name, 100, namef);
+            fprintf(stdout,"%s",name);
+      
+        
+        fclose(namef);
+    }
+
+    
+    
+    fclose(listf);
+    
 }
 /*
 void write_data(void)
