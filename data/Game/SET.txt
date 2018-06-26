@@ -1,0 +1,2 @@
+timer 2
+strings 2
