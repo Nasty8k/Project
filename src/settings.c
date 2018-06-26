@@ -57,7 +57,7 @@ int correct_set(int set_t, int set_s) /*correct ? return 1 : return 0*/
         return 0;
     }
   
-    if ((set_s > 0) && (set_s < 100)) {
+    if ((set_s > 0) && (set_s < 25)) {
         timer = set_t;  
         n_strings = set_s;
     } else {
