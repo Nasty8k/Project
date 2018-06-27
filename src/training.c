@@ -4,8 +4,8 @@
 
 void compare_string(char *s1, char *s2, struct progress *prog)
 {	
-    int mas[strlen(s1)];
-    for (int len = 0; len < (strlen(s1)); len++) {
+    int mas[strlen(s1)], i, len;
+    for ( len = 0; len < (strlen(s1)); len++) {
 		if (s1[len] == s2[len]) {
 			if (s1[len] != ' ') {
 				prog->right_s = prog->right_s + 1;
@@ -26,7 +26,7 @@ void compare_string(char *s1, char *s2, struct progress *prog)
    system("clear");
    opening();
    printf("%sREZULT%s\t", YELOW, RESET);
-   for (int i = 0; i < strlen(s1); i++)
+   for ( i = 0; i < strlen(s1); i++)
        (mas[i] == 0) ? printf("%s%c%s", RED, s1[i], RESET) : printf("%s%c%s", GREEN, s1[i], RESET);
    printf("\n");  
 }

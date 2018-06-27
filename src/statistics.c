@@ -31,6 +31,7 @@ void own_statistics(char *name)
     char file_name[17] = {"data/Users/"};
     char string[50] = {0};
     char *str = string;
+    int i;
     strcat(file_name, name);
     strcat(file_name,".txt");
     FILE *namef = fopen(file_name, "r");
@@ -39,7 +40,7 @@ void own_statistics(char *name)
         return ;
     }
     printf("YOUR STATISTICS\n");   
-    for ( int i = 0; i <= counter(file_name)- 1; i++){
+    for (  i = 0; i <= counter(file_name)- 1; i++){
         fgets(str, 49, namef);
         fprintf(stdout, "%s", str);
     } 
@@ -66,27 +67,27 @@ void general_statistics(void)
     char dir[] = {"data/Users/"};
     char list[i][100];
     char players[i][100];
-    int num;
+    int num, j, g, p;
 	
 
-    for (int j = 0; j < i; j++){
+    for ( j = 0; j < i; j++){
         fscanf(listf,"%d%c%s", &num, &c, players[j]);
         strcpy(list[j],dir);
         strcat(list[j],players[j]);   
     }
     
     //добавление  к имени игрока ".txt"
-    for ( int j = 0; j < i; j++){
+    for (  j = 0; j < i; j++){
        scopy(list[j]);
     }
     
-    for (int g = 0; g < i; g ++){// открытие файла типа NAME.txt
+    for ( g = 0; g < i; g ++){// открытие файла типа NAME.txt
         namef = fopen(list[g], "r"); 
         char name[100];
         
         fprintf(stdout,"%s|", players[g]);
         
-        for (int p =0; p < counter(list[g]); p++)
+        for ( p = 0; p < counter(list[g]); p++)
 			fgets(name, 100, namef);
             fprintf(stdout, "%s", name);
             fclose(namef);

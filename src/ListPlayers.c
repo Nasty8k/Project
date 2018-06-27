@@ -81,7 +81,7 @@ int check_individual(char new_name[]) /* ok ? 1 : 0;*/
 
 int check_in_name(char new_name[], int all)
 {
-    int len = strlen(new_name);
+    int len = strlen(new_name), i;
     if ((all >= 15) || (all == 0)) {
         printf("The lenght of name from 1 to 15\n");
         return 0;
@@ -90,7 +90,7 @@ int check_in_name(char new_name[], int all)
         printf("the first letter must be a symbol\n");
         return 0;
     }
-    for(int i = 0; i < len; i++)
+    for( i = 0; i < len; i++)
         if (schr(RUS, new_name[i]) >= 0) {
             printf("Only ABC. Don't use space or \\ and #\n");
             return 0;
