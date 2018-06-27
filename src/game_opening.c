@@ -5,7 +5,8 @@ char * settime(struct tm *u)
 {
   char s[29];
   char *tmp;
-  for (int i = 0; i<29; i++) s[i] = 0;
+  int i;
+  for ( i = 0; i < 29; i++) s[i] = 0;
   strftime(s, 29, "%d.%m.%Y %H:%M, %A", u);
   tmp = (char*)malloc(sizeof(s));
   strcpy(tmp, s);
